@@ -17,7 +17,7 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
 def get_product_json(request):
-    product_item = Product.objects.all()
+    product_item = Product.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize('json', product_item))
 
 @csrf_exempt
